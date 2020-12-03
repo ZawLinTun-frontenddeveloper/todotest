@@ -41,14 +41,31 @@ function showList(text){
   <li id="listdiv${i}">
   <span id="listText${i}">${text}</span>
   <button id="delete" class="btn delete-btn" onclick="deleteList(${i})">Delete</button>
-  <button id="edit" class="btn edit-btn">Edit</button>
+  <button id="edit" class="btn edit-btn" onclick="editList(${i})">Edit</button>
   </li>`;
   i++;
 }
 
 function deleteList(listId){
+	let currentText = document.getElementById(`listText${listId}`).innerHTML;
 	let current = document.getElementById(`listdiv${listId}`);
+	let deleteConfirm = confirm(`Are you sure to delete "${currentText}"`);
+
+	if (deleteConfirm){
 	list.removeChild(current);
+	}else {
+		console.log ('Delete Cancelled')
+	}
+}
+
+
+function editList(listId){
+	let current = document.getElementById(`listText${listId}`);
+	let newText = prompt("Edit Here", current.innerHTML);
+
+	if (textFilter(newText)){
+	current.innerHTML = newText;
+	} ;
 }
 
 
