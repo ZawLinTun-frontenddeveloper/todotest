@@ -1,6 +1,7 @@
 let input = document.getElementById('inputField');
 let listItem = document.getElementById('list');
 let minNum = 3;
+let i = 1;
 
 function textFilter(x) {
     if (x) {
@@ -16,12 +17,21 @@ function textFilter(x) {
     }
 }
 
+function fullList(text){
+	listItem.innerHTML += `<li class="eachList${i}">
+	<span class="listText${i}">${text}</span>
+	<button id="delete">Delete</button>
+	<button id="edit">Edit</button>
+	</li>`;
+	i++;
+}
+
 function addList() {
 
     let inputText = textFilter(input.value);
 
     if (inputText) {
-        listItem.innerHTML += `<li>${inputText}</li>`;
+        fullList(inputText);
         input.value = "";
     }else{
     	input.value = "";
